@@ -1,0 +1,16 @@
+{% extends "base/theme.html" %}
+{% block main_content %}
+<div class="row main-content">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class='panel'>
+        <h3>{{ artist.title }}</h3>
+         {% if artist.image_file %}
+			<img class="img-responsive" src="{{ artist.image_file.url }}"></img>
+		 {% endif %}
+        <p>{{ artist.description }}</p>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base/theme.html" %}
+{% block main_content %}
+<div class="row main-content">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+    {% for artist in object_list %}
+        <div class=''>
+        <h3><a href ="{{ artist.get_absolute_url }}">{{ artist.title }}</a></h3>
+        {% if artist.genre %}<p><b>Genre: </b>{{ artist.genre }}</b></p> {% endif %}
+        {% if artist.image_file %}
+            <img class="img-responsive" src="{{ artist.image_file.url }}"></img>
+        {% endif %}
+        <p>{{ artist.description }}</p>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
