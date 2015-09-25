@@ -4,13 +4,20 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
     {% for artist in object_list %}
-        <div class=''>
-        <h3><a href ="{{ artist.get_absolute_url }}">{{ artist.title }}</a></h3>
-        {% if artist.genre %}<p><b>Genre: </b>{{ artist.genre }}</b></p> {% endif %}
+        <div class='row'>
+        <div class="col-md-8">
+            <h3><a href="{{ artist.get_absolute_url }}">{{ artist.title }}</a></h3>
+        </div>
+        <div class="col-md-4 text-right">
+            <h3>{% include 'base/rating.html' with rating=artist.get_average_rating %}</h3>
+        </div>
+        <div class="col-md-12">
+        <p><b>Genre:</b>{% if artist.genre %}<b> {{ artist.get_genre_display }}</b>{{ artist.genre }}</b></p> {% endif %}
         {% if artist.image_file %}
             <img class="img-responsive" src="{{ artist.image_file.url }}"></img>
         {% endif %}
         <p>{{ artist.description }}</p>
+        </div>
         </div>
     {% endfor %}
     </div>

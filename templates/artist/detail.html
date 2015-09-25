@@ -3,13 +3,33 @@
 <div class="row main-content">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <div class='panel'>
-        <h3>{{ artist.title }}</h3>
-         {% if artist.image_file %}
-			<img class="img-responsive" src="{{ artist.image_file.url }}"></img>
-		 {% endif %}
-        <p>{{ artist.description }}</p>
+    <div class="row">
+        <div class="col-md-8">
+        <h3><a href="{{ artist.get_absolute_url }}">{{ artist.title }}</a></h3>
         </div>
+        <div class="col-md-4 text-right">
+        <h3>{% include 'base/rating.html' with rating=artist.get_average_rating %}</h3>
+        </div>
+        <div class="col-md-12">
+        {% if artist.genre %}<p><b>{{ artist.get_genre_display }}</b>{{ artist.genre }}</p>{% endif %}
+        <p>{{ artist.description }}</p>
+        {% if artist.image_file %}
+            <img class="img-responsive" src="{{ artist.image_file.url }}"></img>
+        {% endif %}
+        </div> 
+    <div class="col-md-12">
+        <a type="button" href="{% url 'artist_update' pk=artist.id %}" class="btn btn-default pull-right">Edit</a>
+    {% if user_review %}
+        <a type="button" href="{% url 'review_update' pk=artist.id %}" class="btn btn-default pull-right">Update Review</a>
+    {% else %}
+        <a type="button" href="{% url 'review_create' pk=artist.id %}" class="btn btn-default pull-right">Create Review</a>
+    {% endif %}
+    </div>
+    <div class="col-md-12">
+    {% for review in artist.get_reviews %}
+        {% include 'base/review.html' with artist=artist %}
+    {% endfor %}
+    </div>
     </div>
     <div class="col-md-2"></div>
 </div>
