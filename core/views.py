@@ -4,6 +4,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from sitegate.decorators import redirect_signedin, sitegate_view
+from django.contrib import auth
+from django.contrib.auth.views import login, logout
 import core.models as coremodels
 
 
@@ -79,3 +81,8 @@ class SearchListView(ArtistListView):
 
 def entrance(request):
 	return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
+
+def logout_view(request):
+	auth.logout(request)
+	# Redirect to a success page.
+	return HttpResponseRedirect("/user/loggedout/")

@@ -2,15 +2,18 @@
 
 {% block navigation %}
 	<li>
-	<a class ="page-scroll" href="/artist">Explore Artists</a>
+		<a class ="page-scroll" href="/artist/">Explore Artists</a>
 	</li>
 	{% if user.is_authenticated %}
 	<li>
-	<a class="page-scroll" href="/artist/create/">Add an Artist</a>
+		<a class="page-scroll" href="/artist/create/">Add an Artist</a>
+	</li>
+	<li>
+		<a class="page-scroll" href="/accounts/logout/">Log Out</a>
 	</li>
 	{% else %}
  	<li>
- 	<a class="page-scroll" href="/entrance/">Log In</a>
+ 		<a class="page-scroll" href="/entrance/">Log In</a>
  	</li> 
 	{% endif %} 
 
