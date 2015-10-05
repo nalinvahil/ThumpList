@@ -17,6 +17,7 @@ class LandingView(TemplateView):
 class ArtistListView(ListView):
     model = coremodels.Artist
     template_name = 'artist/list.html'
+    paginate_by = 5
 
 class ArtistDetailView(DetailView):
     model = coremodels.Artist
